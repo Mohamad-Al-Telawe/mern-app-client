@@ -1,0 +1,171 @@
+/* الأساسيات */
+body {
+   margin: 0;
+   /* font-family: "El Messiri", sans-serif; */
+   background-color: #f9f9f9;
+}
+* {
+   font-family: "El Messiri", sans-serif;
+}
+.container {
+   max-width: 900px;
+   margin: auto;
+   padding: 20px;
+}
+
+/* عنوان الصفحة */
+h1 {
+   text-align: center;
+   margin-bottom: 20px;
+   color: #2c3e50;
+}
+
+/* الفلاتر */
+.filters {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   margin-bottom: 20px;
+}
+
+.filters input {
+   flex: 1 1 15px;
+   padding: 10px;
+   font-size: 16px;
+   border-radius: 6px;
+   border: 1px solid #ccc;
+}
+
+/* الشبكة العامة للجلسات */
+.session-grid {
+   display: grid;
+   gap: 15px;
+}
+
+/* الجلسة */
+.session {
+   border: 1px solid #ddd;
+   border-left: 5px solid #ccc;
+   border-radius: 8px;
+   padding: 15px;
+   margin: 5px 0;
+   background-color: #ffffff;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.session.saved {
+   border-left-color: #2ecc71;
+   background-color: #f0fff5;
+}
+
+.session.unsaved {
+   border-left-color: #f39c12;
+   background-color: #fff8dc;
+}
+
+/* عنوان الطالب */
+.session-header {
+   font-weight: bold;
+   color: #333;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+/* الحقول */
+.session-body {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+   gap: 10px;
+}
+
+.session-body input,
+.session-body select {
+   padding: 8px;
+   font-size: 14px;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+   box-sizing: border-box;
+}
+
+/* زر الحذف */
+.delete-btn {
+   background: none;
+   border: none;
+   font-size: 18px;
+   color: #e74c3c;
+   cursor: pointer;
+}
+
+/* زر التحديث */
+.update-btn {
+   padding: 9px 12px;
+   font-size: 14px;
+   background-color: #3498db;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   align-self: flex-start;
+}
+
+.update-btn:hover {
+   background-color: #2980b9;
+}
+
+/* تنبيه العلامة */
+.alert {
+   color: red;
+   font-size: 14px;
+   margin-top: 5px;
+}
+
+/* أزرار أسفل الصفحة */
+.actions {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   justify-content: center;
+   margin-top: 20px;
+}
+
+.actions button {
+   padding: 10px 20px;
+   font-size: 16px;
+   border: none;
+   background-color: #2ecc71;
+   color: white;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.actions button:hover {
+   background-color: #27ae60;
+}
+
+/* الجوال */
+@media (max-width: 600px) {
+   .session-body {
+      grid-template-columns: 1fr;
+   }
+
+   .filters {
+      flex-direction: column;
+   }
+
+   .filters input {
+      /* width: 100%; */
+   }
+
+   .actions {
+      flex-direction: column;
+   }
+
+   .actions button {
+      width: 100%;
+   }
+}
