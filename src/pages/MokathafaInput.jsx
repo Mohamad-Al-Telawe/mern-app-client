@@ -233,7 +233,7 @@ const MokathafaInput = () => {
             )}
           </div>
 
-          {(s.hifzMark < 5 || s.tajweedMark < 5) && (
+          {(s.hifzMark < 3 || s.tajweedMark < 3) && (
             <div className="alert">⚠️ العلامة منخفضة جداً!</div>
           )}
         </div>
@@ -241,8 +241,8 @@ const MokathafaInput = () => {
 
       {/* أزرار عامة */}
       <div className="actions">
-        <button onClick={handleAddSession}>➕ إضافة جلسة جديدة</button>
-        <button onClick={handleSend}>🚀 إرسال الجلسات</button>
+        <button onClick={handleAddSession}>➕ إضافة تسميع جديد</button>
+        <button onClick={handleSend}>🚀 إرسال التسميعات</button>
       </div>
     </div>
   );
