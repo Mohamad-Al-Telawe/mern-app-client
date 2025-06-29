@@ -199,7 +199,7 @@ const MokathafaInput = () => {
             </select>
 
             <input
-              type="text"
+              type="number"
               value={s.pageNumber}
               onChange={(e) => handleChange(i, "pageNumber", e.target.value)}
               placeholder="رقم الصفحة"
