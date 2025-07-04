@@ -13,7 +13,6 @@ function App() {
             <Route path="/input" element={<MokathafaInput />} />
             <Route path="/view" element={<ViewSessions />} />
             <Route path="/old-sessions" element={<OldSessionsUploader />} />
-
          </Routes>
       </Router>
    );
