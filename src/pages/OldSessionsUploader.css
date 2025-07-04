@@ -1,0 +1,57 @@
+.old-sessions-uploader {
+   max-width: 700px;
+   margin: auto;
+   padding: 20px;
+   font-family: sans-serif;
+   text-align: center;
+}
+
+.student-range {
+   background-color: #f9f9f9;
+   padding: 15px;
+   border-radius: 10px;
+   margin-bottom: 15px;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.range-inputs {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   label {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+   }
+}
+
+.range-inputs input {
+   width: 70px;
+   margin: 0 5px;
+}
+
+.generate-btn,
+.submit-btn {
+   margin-top: 20px;
+   padding: 10px 20px;
+   background: #3498db;
+   border: none;
+   color: white;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+.sessions-preview {
+   margin-top: 15px;
+   background: #fff;
+   border: 1px solid #ddd;
+   padding: 10px;
+   max-height: 300px;
+   overflow-y: auto;
+   border-radius: 8px;
+}
+
+.session-line {
+   padding: 3px 0;
+   border-bottom: 1px dashed #eee;
+}
