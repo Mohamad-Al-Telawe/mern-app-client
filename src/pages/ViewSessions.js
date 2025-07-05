@@ -144,7 +144,7 @@ const ViewSessions = () => {
                      <th>الاسم</th>
                      <th>جديد</th>
                      <th>مراجعة</th>
-                     <th>المجموع</th>
+                     <th>مجموع النقاط</th>
                   </tr>
                </thead>
                <tbody>
