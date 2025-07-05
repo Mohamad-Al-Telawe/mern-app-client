@@ -6,12 +6,14 @@ const API_URL =
 
 const ViewSessions = () => {
    const [groupedSessions, setGroupedSessions] = useState({});
+   const [studentsPoints, setStudentsPoints] = useState([]);
 
    useEffect(() => {
       fetch(API_URL)
          .then((res) => res.json())
          .then((data) => {
             const grouped = {};
+            const pointsList = {};
 
             data.forEach((session) => {
                const name = session.studentId?.name || "غير معروف";
@@ -20,12 +22,15 @@ const ViewSessions = () => {
 
                if (!grouped[name]) {
                   grouped[name] = { new: [], review: [] };
+                  pointsList[name] = { new: 0, review: 0 };
                }
 
                if (type === "جديد") {
                   grouped[name].new.push(page);
+                  pointsList[name].new += 1;
                } else if (type === "مراجعة") {
                   grouped[name].review.push(page);
+                  pointsList[name].review += 1;
                }
             });
 
@@ -35,7 +40,21 @@ const ViewSessions = () => {
                grouped[name].review.sort((a, b) => a - b);
             }
 
+            // حساب النقاط النهائية
+            const finalPoints = Object.entries(pointsList).map(
+               ([name, counts]) => ({
+                  name,
+                  new: counts.new,
+                  review: counts.review,
+                  total: counts.new * 10 + counts.review * 5,
+               })
+            );
+
+            // ترتيبهم تنازليًا حسب المجموع
+            finalPoints.sort((a, b) => b.total - a.total);
+
             setGroupedSessions(grouped);
+            setStudentsPoints(finalPoints);
          })
          .catch((err) => console.error("خطأ في جلب الجلسات:", err));
    }, []);
@@ -67,6 +86,7 @@ const ViewSessions = () => {
    return (
       <div className="view-sessions-container">
          <h1>عرض تسميعات الطلاب</h1>
+
          {Object.entries(groupedSessions).map(([studentName, pages]) => {
             const newRanges = compressPages(pages.new);
             const reviewRanges = compressPages(pages.review);
@@ -104,9 +124,42 @@ const ViewSessions = () => {
                      <span>✅ المجموع جديد: {pages.new.length} صفحات</span>
                      <span>🔁 المجموع مراجعة: {pages.review.length} صفحات</span>
                   </div>
+                  <div className="totals-points">
+                     مجموع النقاط = 
+                      {pages.review.length} * 5 + {pages.new.length} * 10 
+                     <br></br>
+                     {pages.new.length * 10 + pages.review.length * 5} = 
+                  </div>
                </div>
             );
          })}
+
+         {/* جدول النقاط النهائي */}
+         <div className="summary-table">
+            <h2>🏆 ترتيب الطلاب حسب النقاط</h2>
+            <table>
+               <thead>
+                  <tr>
+                     <th>الترتيب</th>
+                     <th>الاسم</th>
+                     <th>جديد</th>
+                     <th>مراجعة</th>
+                     <th>المجموع</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {studentsPoints.map((student, i) => (
+                     <tr key={student.name}>
+                        <td>{i + 1}</td>
+                        <td>{student.name}</td>
+                        <td>{student.new}</td>
+                        <td>{student.review}</td>
+                        <td>{student.total}</td>
+                     </tr>
+                  ))}
+               </tbody>
+            </table>
+         </div>
       </div>
    );
 };
