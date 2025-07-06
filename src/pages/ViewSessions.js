@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./ViewSessions.css";
+import "./styles/ViewSessions.css";
 
 const API_URL =
    "https://mern-app-server-production-457d.up.railway.app/api/sessions";

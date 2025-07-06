@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./AttendancePage.css";
+import "./styles/AttendancePage.css";
 
 const API_STUDENTS =
    "https://mern-app-server-production-457d.up.railway.app/api/students";

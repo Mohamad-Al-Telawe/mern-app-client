@@ -5,7 +5,7 @@
    max-width: 800px;
    margin: auto;
    direction: rtl;
-}
+
 
 .attendance-page h1 {
    text-align: center;
@@ -87,4 +87,5 @@
    color: green;
    font-weight: bold;
    font-size: 15px;
+}
 }

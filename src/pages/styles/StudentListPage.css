@@ -3,7 +3,7 @@
    max-width: 1200px;
    margin: auto;
    direction: rtl;
-}
+
 
 .add-btn {
    margin-bottom: 20px;
@@ -68,14 +68,14 @@
    color: #555;
 }
 
-.actions {
+.student-info .actions {
    margin-top: 10px;
    display: flex;
    justify-content: flex-end;
    gap: 10px;
 }
 
-.actions button {
+.student-info .actions button {
    padding: 5px 10px;
    font-size: 14px;
    cursor: pointer;
@@ -85,11 +85,11 @@
    color: white;
 }
 
-.actions .delete-btn {
+.student-info  .actions .delete-btn {
    background-color: #dc3545;
 }
 
-.actions button:hover {
+.student-info .actions button:hover {
    opacity: 0.9;
 }
 
@@ -109,7 +109,8 @@
       text-align: center;
    }
 
-   .actions {
+   .student-info .actions {
       justify-content: center;
    }
+}
 }
