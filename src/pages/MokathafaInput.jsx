@@ -36,7 +36,7 @@ const MokathafaInput = () => {
    useEffect(() => {
       console.log("🔄 تحميل الجلسات حسب التاريخ:", filterDate);
 
-      const saved = localStorage.getItem("mokathafa_sessions");
+      const saved = localStorage.getItem("mokathafa_sessions_v2 ");
       const localSessions = saved ? JSON.parse(saved) : [];
 
       fetch(`${API_URL}/sessions?date=${filterDate}`)
@@ -56,7 +56,7 @@ const MokathafaInput = () => {
    }, [filterDate]);
 
    useEffect(() => {
-      localStorage.setItem("mokathafa_sessions", JSON.stringify(sessions));
+      localStorage.setItem("mokathafa_sessions_v2 ", JSON.stringify(sessions));
    }, [sessions]);
 
    const handleAddSession = () => {
@@ -134,7 +134,7 @@ const MokathafaInput = () => {
          }
 
          setSessions(updated);
-         localStorage.removeItem("mokathafa_sessions");
+         localStorage.removeItem("mokathafa_sessions_v2 ");
       } catch {
          alert("⚠️ حدث خطأ أثناء الإرسال، تأكد من الاتصال بالإنترنت.");
       }
