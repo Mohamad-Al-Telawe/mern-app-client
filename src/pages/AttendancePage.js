@@ -12,25 +12,32 @@ const AttendancePage = () => {
    const [loading, setLoading] = useState(false);
    const [filters, setFilters] = useState({ level: "", group: "", grade: "" });
    const [search, setSearch] = useState("");
+   const [selectedDate, setSelectedDate] = useState(
+      new Date().toISOString().split("T")[0]
+   );
    const [timeInputs, setTimeInputs] = useState({});
+   const [hifzStatusInputs, setHifzStatusInputs] = useState({});
 
-   const todayDate = new Date().toISOString().split("T")[0];
-
+   // ✅ جلب الطلاب مرة واحدة
    useEffect(() => {
       fetch(API_STUDENTS)
          .then((res) => res.json())
          .then(setStudents)
          .catch(console.error);
+   }, []);
 
-      fetch(`${API_ATTENDANCE}?date=${todayDate}`)
+   // ✅ جلب الحضور حسب التاريخ
+   useEffect(() => {
+      fetch(`${API_ATTENDANCE}?date=${selectedDate}`)
          .then((res) => res.json())
          .then(setTodayAttendance)
          .catch(console.error);
-   }, []);
+   }, [selectedDate]);
 
    const handleAttend = async (studentId) => {
       setLoading(true);
       const timeIn = timeInputs[studentId] || null;
+      const hifz = hifzStatusInputs[studentId] || "غير حافظ";
 
       try {
          const res = await fetch(API_ATTENDANCE, {
@@ -38,8 +45,9 @@ const AttendancePage = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                studentId,
-               date: todayDate,
-               timeIn: timeIn ? `${todayDate}T${timeIn}` : undefined,
+               date: selectedDate,
+               timeIn: timeIn ? `${selectedDate}T${timeIn}` : undefined,
+               hifz,
             }),
          });
 
@@ -74,7 +82,17 @@ const AttendancePage = () => {
 
    return (
       <div className="attendance-page">
-         <h1>تسجيل الحضور - {todayDate}</h1>
+         <h1>تسجيل الحضور - {selectedDate}</h1>
+
+         {/* ✅ اختيار التاريخ */}
+         <div className="date-control">
+            <label>📅 اختر التاريخ: </label>
+            <input
+               type="date"
+               value={selectedDate}
+               onChange={(e) => setSelectedDate(e.target.value)}
+            />
+         </div>
 
          {/* ✅ الفلاتر والبحث */}
          <div className="filters">
@@ -121,6 +139,7 @@ const AttendancePage = () => {
                <span className="student-name">{student.name}</span>
 
                <div className="attendance-actions">
+                  {/* ✅ خانة الوقت لطلاب المكثفة */}
                   {student.level === "مكثفة" && !isPresent(student._id) && (
                      <input
                         type="time"
@@ -134,6 +153,24 @@ const AttendancePage = () => {
                      />
                   )}
 
+                  {/* ✅ خانة الحفظ للجميع */}
+                  {!isPresent(student._id) && (
+                     <select
+                        value={hifzStatusInputs[student._id] || ""}
+                        onChange={(e) =>
+                           setHifzStatusInputs({
+                              ...hifzStatusInputs,
+                              [student._id]: e.target.value,
+                           })
+                        }>
+                        <option value="">حالة الحفظ</option>
+                        <option value="حافظ">حافظ</option>
+                        <option value="غير حافظ">غير حافظ</option>
+                        <option value="لا يوجد تسميع">لا يوجد تسميع</option>
+                     </select>
+                  )}
+
+                  {/* ✅ عرض حالة الحضور */}
                   {isPresent(student._id) ? (
                      <span className="present-mark">✅ تم الحضور</span>
                   ) : (

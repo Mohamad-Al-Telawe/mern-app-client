@@ -6,6 +6,7 @@ import OldSessionsUploader from "./pages/OldSessionsUploader";
 import AttendancePage from "./pages/AttendancePage";
 import StudentListPage from "./pages/StudentListPage.js";
 import ImportStudentsPage from "./pages/ImportStudentsJSON.js";
+import UploadTest from "./pages/UploadTest";
 
 function App() {
    // return <MokathafaInput />;
@@ -19,6 +20,7 @@ function App() {
             <Route path="/attendance" element={<AttendancePage />} />
             <Route path="/student-list" element={<StudentListPage />} />
             <Route path="/import-students" element={<ImportStudentsPage />} />
+            <Route path="/upload-test" element={<UploadTest />} />
          </Routes>
       </Router>
    );
