@@ -7,6 +7,7 @@ import AttendancePage from "./pages/AttendancePage";
 import StudentListPage from "./pages/StudentListPage.js";
 import ImportStudentsPage from "./pages/ImportStudentsJSON.js";
 import UploadTest from "./pages/UploadTest";
+import AttendanceReportPage from "./pages/AttendanceReportPage.jsx";
 
 function App() {
    // return <MokathafaInput />;
@@ -21,6 +22,7 @@ function App() {
             <Route path="/student-list" element={<StudentListPage />} />
             <Route path="/import-students" element={<ImportStudentsPage />} />
             <Route path="/upload-test" element={<UploadTest />} />
+            <Route path="/attendance-report" element={<AttendanceReportPage />} />
          </Routes>
       </Router>
    );

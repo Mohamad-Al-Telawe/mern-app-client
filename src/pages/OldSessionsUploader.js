@@ -6,7 +6,7 @@ const API_STUDENTS =
 const API_SESSIONS =
    "https://mern-app-server-production-457d.up.railway.app/api/sessions/bulk";
 
-const OLD_START_DATE = new Date("2025-06-15");
+const OLD_START_DATE = new Date("2025-07-01");
 const NEW_DAYS = ["Sunday", "Monday", "Tuesday"];
 const REVIEW_DAYS = ["Wednesday", "Thursday"];
 
@@ -87,8 +87,8 @@ const OldSessionsUploader = () => {
                   sessions.push({
                      studentId: student._id,
                      pageNumber: page,
-                     tajweedMark: 5,
-                     hifzMark: 5,
+                     tajweedMark: 4,
+                     hifzMark: 4,
                      type: "جديد",
                      date: newDates[i].toISOString().split("T")[0],
                   });
@@ -111,8 +111,8 @@ const OldSessionsUploader = () => {
                   sessions.push({
                      studentId: student._id,
                      pageNumber: page,
-                     tajweedMark: 5,
-                     hifzMark: 5,
+                     tajweedMark: 4,
+                     hifzMark: 4,
                      type: "مراجعة",
                      date: reviewDates[i].toISOString().split("T")[0],
                   });

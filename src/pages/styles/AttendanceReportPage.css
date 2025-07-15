@@ -1,0 +1,66 @@
+.attendance-report {
+  max-width: 700px;
+  margin: auto;
+  padding: 2rem;
+  font-family: "Cairo", sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-report h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.filters label {
+  font-weight: bold;
+  color: #555;
+}
+
+.filters input[type="date"] {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.attendance-report h3 {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.attended-students {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  border-top: 1px solid #ccc;
+}
+
+.attended-students li {
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+
+.attended-students li:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 500px) {
+  .attended-students li {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
