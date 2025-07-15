@@ -30,21 +30,40 @@ const ViewSessions = () => {
 
       setSessionsMap(grouped);
    };
-   const calculatePoints = () => {
-      const results = [];
+   
+const calculatePoints = () => {
+   const results = [];
 
-      Object.entries(sessionsMap).forEach(([name, { new: n, review: r }]) => {
-         const newCount = n?.length || 0;
-         const reviewCount = r?.length || 0;
-         const total = newCount * 10 + reviewCount * 5;
+   Object.entries(sessionsMap).forEach(([name, { new: n, review: r }]) => {
+      const newCount = n?.length || 0;
+      const reviewCount = r?.length || 0;
 
-         results.push({ name, newCount, reviewCount, total });
+      const newPoints = (n || []).reduce(
+         (sum, s) => sum + (s.hifzMark || 0) + (s.tajweedMark || 0),
+         0
+      );
+
+      const reviewPoints = (r || []).reduce(
+         (sum, s) => sum + (s.hifzMark || 0) + (s.tajweedMark || 0),
+         0
+      );
+
+      const total = newPoints + reviewPoints;
+
+      results.push({
+         name,
+         newCount,
+         reviewCount,
+         newPoints,
+         reviewPoints,
+         total,
       });
+   });
 
-      // ترتيب تنازلي حسب النقاط
-      return results.sort((a, b) => b.total - a.total);
-   };
+   return results.sort((a, b) => b.total - a.total);
+};
 
+   
    const handleAdd = async (studentName, type, value) => {
       const page = parseInt(value);
       if (!page) return;
@@ -164,24 +183,28 @@ const ViewSessions = () => {
             <table>
                <thead>
                   <tr>
-                     <th>#</th>
-                     <th>الاسم</th>
-                     <th>جديد</th>
-                     <th>مراجعة</th>
-                     <th>المجموع</th>
-                  </tr>
+        <th>#</th>
+        <th>الاسم</th>
+        <th>جديد (صفحات)</th>
+        <th>مراجعة (صفحات)</th>
+        <th>نقاط الجديد</th>
+        <th>نقاط المراجعة</th>
+        <th>المجموع</th>
+      </tr>
                </thead>
                <tbody>
-                  {calculatePoints().map((s, i) => (
-                     <tr key={s.name}>
-                        <td>{i + 1}</td>
-                        <td>{s.name}</td>
-                        <td>{s.newCount}</td>
-                        <td>{s.reviewCount}</td>
-                        <td>{s.total}</td>
-                     </tr>
-                  ))}
-               </tbody>
+      {calculatePoints().map((s, i) => (
+        <tr key={s.name}>
+          <td>{i + 1}</td>
+          <td>{s.name}</td>
+          <td>{s.newCount}</td>
+          <td>{s.reviewCount}</td>
+          <td>{s.newPoints}</td>
+          <td>{s.reviewPoints}</td>
+          <td>{s.total}</td>
+        </tr>
+      ))}
+    </tbody>
             </table>
          </div>
          {Object.entries(sessionsMap).map(
