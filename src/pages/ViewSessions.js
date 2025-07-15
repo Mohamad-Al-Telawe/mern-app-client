@@ -159,7 +159,31 @@ const ViewSessions = () => {
    return (
       <div className="view-sessions">
          <h1>📚 تسميعات الطلاب</h1>
-
+         <div className="summary-table">
+            <h2>🏆 ترتيب الطلاب حسب النقاط</h2>
+            <table>
+               <thead>
+                  <tr>
+                     <th>#</th>
+                     <th>الاسم</th>
+                     <th>جديد</th>
+                     <th>مراجعة</th>
+                     <th>المجموع</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {calculatePoints().map((s, i) => (
+                     <tr key={s.name}>
+                        <td>{i + 1}</td>
+                        <td>{s.name}</td>
+                        <td>{s.newCount}</td>
+                        <td>{s.reviewCount}</td>
+                        <td>{s.total}</td>
+                     </tr>
+                  ))}
+               </tbody>
+            </table>
+         </div>
          {Object.entries(sessionsMap).map(
             ([name, { new: newPages, review: reviewPages }]) => (
                <div className="student-block" key={name}>
@@ -205,31 +229,6 @@ const ViewSessions = () => {
                </div>
             )
          )}
-         <div className="summary-table">
-            <h2>🏆 ترتيب الطلاب حسب النقاط</h2>
-            <table>
-               <thead>
-                  <tr>
-                     <th>#</th>
-                     <th>الاسم</th>
-                     <th>جديد</th>
-                     <th>مراجعة</th>
-                     <th>المجموع</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {calculatePoints().map((s, i) => (
-                     <tr key={s.name}>
-                        <td>{i + 1}</td>
-                        <td>{s.name}</td>
-                        <td>{s.newCount}</td>
-                        <td>{s.reviewCount}</td>
-                        <td>{s.total}</td>
-                     </tr>
-                  ))}
-               </tbody>
-            </table>
-         </div>
       </div>
    );
 };
