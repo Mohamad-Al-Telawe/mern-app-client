@@ -2,6 +2,7 @@
    padding: 20px;
    direction: rtl;
    font-family: "Cairo", sans-serif;
+   text-align: center;
 }
 
 .student-block {
@@ -36,7 +37,9 @@
       width: 100%;
    }
 }
-
+.header-row > div{
+   width: 100%;
+}
 .pages-row > div {
    flex: 1;
    background: #eef;
@@ -68,7 +71,7 @@
    background: #c0392b;
 }
 .summary-table {
-   margin-top: 40px;
+   margin-bottom: 40px;
    background: #fff;
    border-radius: 10px;
    padding: 20px;
